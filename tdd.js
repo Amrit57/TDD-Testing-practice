@@ -63,3 +63,21 @@ export function analyzeArray(array) {
     return { average: average(), length: arr.length, max: max(), min: min() }
 }
 
+export function caesarCipher(string, shift) {
+    let shiftedString = "";
+
+    for (let i = 0; i < string.length; i++) {
+        let char = string[i];
+
+        if (char.match(/[a-z]/i)) {
+            let checkCharacterCase = char.toLowerCase() === char ? 97 : 65; //Checks the lower/upperCase and returns the respective charCode.
+            let shiftedChar = String.fromCharCode(((char.charCodeAt(0) - checkCharacterCase + shift) % 26) + checkCharacterCase);
+            shiftedString += shiftedChar;
+        } else {
+            shiftedString += char;
+        }
+    }
+
+    return shiftedString;
+}
+
